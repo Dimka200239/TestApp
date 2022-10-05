@@ -15,15 +15,22 @@ namespace FigureLib.Figure
         /// Конструктор класса
         /// </summary>
         /// <param name="radius">Длина радиуса окружности</param>
-        public Circle(double radius)
+        public Circle(string radius)
         {
-            if (CheckSize(radius))
+            if (CheckNumb(radius))
             {
-                this.radius = radius;
+                if (CheckSize(Convert.ToDouble(radius)))
+                {
+                    this.radius = Convert.ToDouble(radius);
+                }
+                else
+                {
+                    throw new Exception("Радиус не может быть <= 0");
+                }
             }
             else
             {
-                throw new Exception("Радиус не может быть <= 0");
+                throw new Exception("Некорректное значение радиуса");
             }
         }
 

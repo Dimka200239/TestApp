@@ -13,6 +13,8 @@ namespace ConsoleApp1
         {
             var run = true;
 
+            Console.WriteLine("ДЛЯ ВВОДА ЧИСЕЛ С ДЕСЯТИЧНЫМИ ДРОБЯМИ ВМЕСТО \".\" ИСПОЛЬЗУЙТЕ \",\"\n");
+
             while (run)
             {
                 Console.Write("Введите 1 для вычисления площади круга, введите 2 для вычисления площади треугольника: ");
@@ -20,26 +22,42 @@ namespace ConsoleApp1
 
                 if (choose == "1")
                 {
-                    Console.Write("Введите радиус круга: ");
-                    var radius = Convert.ToDouble(Console.ReadLine());
+                    try
+                    {
+                        Console.Write("Введите радиус круга: ");
+                        var radius = Console.ReadLine();
 
-                    var newFigure = new Circle(radius);
+                        var newFigure = new Circle(radius);
 
-                    Console.WriteLine($"Площадь круга = {newFigure.findArea()}");
+                        Console.WriteLine($"Площадь круга = {newFigure.findArea()}");
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                        continue;
+                    }
                 }
                 else if (choose == "2")
                 {
-                    Console.Write("Введите длину 1-ой стороны: ");
-                    var firstSide = Convert.ToDouble(Console.ReadLine());
-                    Console.Write("Введите длину 2-ой стороны: ");
-                    var secondSide = Convert.ToDouble(Console.ReadLine());
-                    Console.Write("Введите длину 3-ей стороны: ");
-                    var thirdSide = Convert.ToDouble(Console.ReadLine());
+                    try
+                    {
+                        Console.Write("Введите длину 1-ой стороны: ");
+                        var firstSide = Console.ReadLine();
+                        Console.Write("Введите длину 2-ой стороны: ");
+                        var secondSide = Console.ReadLine();
+                        Console.Write("Введите длину 3-ей стороны: ");
+                        var thirdSide = Console.ReadLine();
 
-                    var newFigure = new Triangle(firstSide, secondSide, thirdSide);
+                        var newFigure = new Triangle(firstSide, secondSide, thirdSide);
 
-                    Console.WriteLine($"Площадь треугольника = {newFigure.findArea()}");
-                    Console.WriteLine($"Треугольник прямоугольный? Ответ: {newFigure.IsTheTriangleRightAndled()}");
+                        Console.WriteLine($"Площадь треугольника = {newFigure.findArea()}");
+                        Console.WriteLine($"Треугольник прямоугольный? Ответ: {newFigure.IsTheTriangleRightAndled()}");
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                        continue;
+                    }
                 }
                 else
                 {

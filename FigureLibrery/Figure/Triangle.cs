@@ -27,17 +27,24 @@ namespace FigureLib.Figure
         /// <param name="firstSide">Первая сторона треугольника</param>
         /// <param name="secondSide">Вторая сторона треугольника</param>
         /// <param name="thirdSide">Третья сторона треугольника</param>
-        public Triangle(double firstSide, double secondSide, double thirdSide)
+        public Triangle(string firstSide, string secondSide, string thirdSide)
         {
-            if (CheckSides(firstSide, secondSide, thirdSide))
+            if (CheckNumb(firstSide) && CheckNumb(secondSide) && CheckNumb(thirdSide))
             {
-                this.firstSide = firstSide;
-                this.secondSide = secondSide;
-                this.thirdSide = thirdSide;
+                if (CheckSides(Convert.ToDouble(firstSide), Convert.ToDouble(secondSide), Convert.ToDouble(thirdSide)))
+                {
+                    this.firstSide = Convert.ToDouble(firstSide);
+                    this.secondSide = Convert.ToDouble(secondSide);
+                    this.thirdSide = Convert.ToDouble(thirdSide);
+                }
+                else
+                {
+                    throw new Exception($"Треугольник со сторонами {firstSide}, {secondSide}, {thirdSide} существовать не может");
+                }
             }
             else
             {
-                throw new Exception($"Треугольник со сторонами {firstSide}, {secondSide}, {thirdSide} существовать не может");
+                throw new Exception($"Некорректное значение сторон треугольника");
             }
         }
 
