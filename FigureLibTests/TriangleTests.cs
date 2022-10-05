@@ -12,13 +12,13 @@ namespace FigureLibTests
         [TestMethod]
         public void ConstructorTestForLargeValues()
         {
-            newTriangle = new Triangle(9999, 7777, 2256);
+            newTriangle = new Triangle("9999", "7777", "2256");
         }
 
         [TestMethod]
         public void ConstructorTestForSmallValues()
         {
-            newTriangle = new Triangle(0.0003, 0.0004, 0.0005);
+            newTriangle = new Triangle("0,0003", "0,0004", "0,0005");
         }
 
         [TestMethod()]
@@ -26,7 +26,7 @@ namespace FigureLibTests
         {
             try
             {
-                newTriangle = new Triangle(0.0003, -0.0004, 0.0005);
+                newTriangle = new Triangle("0,0003", "-0,0004", "0,0005");
             }
             catch (Exception e)
             {
@@ -39,11 +39,24 @@ namespace FigureLibTests
         {
             try
             {
-                newTriangle = new Triangle(10, 4, 3);
+                newTriangle = new Triangle("10", "4", "3");
             }
             catch (Exception e)
             {
                 Assert.AreEqual("Треугольник со сторонами 10, 4, 3 существовать не может", e.Message);
+            }
+        }
+
+        [TestMethod()]
+        public void TestInputIsNotANumber()
+        {
+            try
+            {
+                newTriangle = new Triangle("sgsffsdfsd", "4", "3");
+            }
+            catch (Exception e)
+            {
+                Assert.AreEqual("Некорректное значение сторон треугольника", e.Message);
             }
         }
     }
